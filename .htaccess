@@ -1,0 +1,14 @@
+AuthType Basic
+AuthName "restricted area"
+AuthUserFile /var/www/html/tarif_voce/.htpasswd
+require valid-user
+
+RewriteEngine On
+RewriteBase /tarif_voce
+RewriteCond %{REQUEST_FILENAME}% !-d
+RewriteCond %{REQUEST_FILENAME}% !-f
+RewriteCond %{REQUEST_URI} !storage/getcsv.php
+RewriteCond %{REQUEST_URI} !config/ops.php
+RewriteRule ^(.+)$ index.php [QSA,L]
+
+
